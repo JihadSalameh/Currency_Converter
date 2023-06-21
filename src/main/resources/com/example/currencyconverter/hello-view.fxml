@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.currencyconverter.HelloApplication">
+  <children>
+    <Label layoutX="127.0" layoutY="14.0" text="Currency Converter">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Label>
+    <Label layoutX="14.0" layoutY="62.0" text="Amount" />
+    <Separator layoutY="45.0" prefHeight="3.0" prefWidth="382.0" />
+    <TextField fx:id="amountTxt" layoutX="14.0" layoutY="88.0" />
+    <Label layoutX="14.0" layoutY="124.0" text="From" />
+    <ComboBox fx:id="fromCombo" layoutX="14.0" layoutY="149.0" onMouseClicked="#getFromCurrencies" prefWidth="150.0" />
+    <ComboBox fx:id="toCombo" layoutX="220.0" layoutY="149.0" onMouseClicked="#getToCurrencies" prefWidth="150.0" />
+    <Label layoutX="220.0" layoutY="124.0" text="To" />
+    <Button fx:id="convertBtn" layoutX="162.0" layoutY="192.0" mnemonicParsing="false" onAction="#Convert" text="Convert" />
+    <Label layoutX="73.0" layoutY="259.0" text="Result" />
+    <Separator layoutY="240.0" prefHeight="3.0" prefWidth="382.0" />
+    <Label fx:id="resultLbl" layoutX="76.0" layoutY="288.0" />
+    <Label fx:id="rateLbl" layoutX="271.0" layoutY="288.0" />
+    <Label layoutX="268.0" layoutY="259.0" text="Rate Used" />
+  </children>
+</AnchorPane>
