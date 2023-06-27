@@ -59,7 +59,10 @@ public class HelloApplication extends Application {
             String from = fromCombo.getValue();
             String to = toCombo.getValue();
             String amount = amountTxt.getText();
-            apiConnection(from, to, amount);
+            Conversion conversion = new Conversion(Double.parseDouble(amount), from, to);
+            double ans = conversion.apiConnection();
+            rateLbl.setText(String.valueOf(conversion.getRate()));
+            resultLbl.setText(String.valueOf(ans));
         } else {
             rateLbl.setText("Please fill all fields");
             resultLbl.setText("Please fill all fields");
@@ -77,50 +80,6 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         setupCurrencies();
         launch();
-    }
-
-    private void apiConnection(String from, String to, String amount) {
-        // Setting URL
-        String url_str = "https://v6.exchangerate-api.com/v6/8814c1712af4e89412c13977/pair/" + from + "/" + to;
-
-        try {
-            // Create URL object
-            URL url = new URL(url_str);
-
-            // Create HttpURLConnection
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            // Set request method
-            conn.setRequestMethod("GET");
-
-            // Read the response body as JSON
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line).append("\n");
-            }
-            reader.close();
-
-            JSONObject json = new JSONObject(response.toString());
-            String val =  json.getString("conversion_rate");
-
-            double rate = Double.parseDouble(val);
-            double amount1 = Double.parseDouble(amount);
-
-            calculate(rate, amount1, val);
-
-            // Close the connection
-            conn.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void calculate(double rate, double amount1, String val) {
-        amount1 *= rate;
-        rateLbl.setText(val);
-        resultLbl.setText(String.valueOf(amount1));
     }
 
     private static void setupCurrencies() {

@@ -62,4 +62,13 @@ public class TestConversion {
         assertEquals(25.5, temp2);
     }
 
+    @Test
+    public void checkingConnection() {
+        double temp1 = temp.get(0).apiConnection();
+        double temp2 = temp.get(1).apiConnection();
+        //As of 6/27/2023
+        assertEquals(13.421380000000001, temp1);
+        assertEquals(26.09874, temp2);
+    }
+
 }
